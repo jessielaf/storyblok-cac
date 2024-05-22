@@ -1,0 +1,73 @@
+{
+  "name": "storyblok-cac",
+  "type": "module",
+  "version": "0.0.0",
+  "packageManager": "pnpm@9.1.1",
+  "description": "StoryBlok Components as Code",
+  "author": "Anthony Fu <anthonyfu117@hotmail.com>",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/jessielaf",
+  "homepage": "https://github.com/jessielaf/storyblok-cac#readme",
+  "bugs": "https://github.com/jessielaf/storyblok-cac/issues",
+  "keywords": [],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "bin": "./dist/cli.cjs",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "node --loader ts-node/esm ./src/index.ts --inputFile ./test/components.ts",
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "lint": "eslint .",
+    "prepublishOnly": "nr build",
+    "release": "bumpp && npm publish",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepare": "simple-git-hooks"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.18.1",
+    "@types/node": "^20.12.12",
+    "@types/yargs": "^17.0.32",
+    "bumpp": "^9.4.1",
+    "eslint": "^9.3.0",
+    "esno": "^4.7.0",
+    "lint-staged": "^15.2.2",
+    "rimraf": "^5.0.7",
+    "simple-git-hooks": "^2.11.1",
+    "typescript": "^5.4.5",
+    "unbuild": "^2.0.0",
+    "vite": "^5.2.11",
+    "vitest": "^1.6.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.2",
+    "tsx": "^4.10.5",
+    "yargs": "^17.7.2"
+  }
+}
