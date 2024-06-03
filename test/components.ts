@@ -1,4 +1,7 @@
-import { arrayToStoryBlokOptions, type StoryblokComponent } from "storyblok-cac"
+import {
+  type StoryblokComponent,
+  arrayToStoryBlokOptions,
+} from "@jlaf/storyblok-cac"
 
 export default [
   {
@@ -12,7 +15,7 @@ export default [
         source: "internal",
         datasource_slug: "colors",
       },
-      TextAlign: {
+      textAlign: {
         type: "option",
         options: arrayToStoryBlokOptions(["left", "center", "right"]),
         default_value: "left",

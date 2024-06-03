@@ -1,10 +1,9 @@
 {
-  "name": "storyblok-cac",
+  "name": "@jlaf/storyblok-cac",
   "type": "module",
-  "version": "0.0.0",
-  "packageManager": "pnpm@9.1.1",
+  "version": "0.0.2",
   "description": "StoryBlok Components as Code",
-  "author": "Anthony Fu <anthonyfu117@hotmail.com>",
+  "author": "Jessie Liauw A Fong <jessie@jcbdevelopment.com>",
   "license": "MIT",
   "funding": "https://github.com/sponsors/jessielaf",
   "homepage": "https://github.com/jessielaf/storyblok-cac#readme",
@@ -16,7 +15,8 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
-    }
+    },
+    "./cli": "./dist/cli.cjs"
   },
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
@@ -38,11 +38,16 @@
     "build": "unbuild",
     "dev": "unbuild --stub",
     "lint": "eslint .",
-    "prepublishOnly": "nr build",
+    "prepublishOnly": "yarn run build",
     "release": "bumpp && npm publish",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "prepare": "simple-git-hooks"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.2",
+    "tsx": "^4.10.5",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.18.1",
@@ -64,10 +69,5 @@
   },
   "lint-staged": {
     "*": "eslint --fix"
-  },
-  "dependencies": {
-    "ts-node": "^10.9.2",
-    "tsx": "^4.10.5",
-    "yargs": "^17.7.2"
   }
 }
