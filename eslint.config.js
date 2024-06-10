@@ -5,4 +5,7 @@ export default antfu({
   stylistic: {
     quotes: "double",
   },
+  rules: {
+    "node/prefer-global/process": "off",
+  },
 })

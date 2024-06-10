@@ -14,7 +14,7 @@ First define your components:
 
 ```typescript
 // src/components.ts
-import { arrayToStoryBlokOptions, type StoryblokComponent } from "@jlaf/storyblok-cac";
+import { type StoryblokComponent, arrayToStoryBlokOptions } from "@jlaf/storyblok-cac"
 
 export default [
   {

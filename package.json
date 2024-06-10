@@ -34,15 +34,15 @@
     "dist"
   ],
   "scripts": {
-    "start": "node --loader ts-node/esm ./src/index.ts --inputFile ./test/components.ts",
     "build": "unbuild",
     "dev": "unbuild --stub",
     "lint": "eslint .",
+    "prepare": "simple-git-hooks",
     "prepublishOnly": "yarn run build",
     "release": "bumpp && npm publish",
+    "start": "node --loader ts-node/esm ./src/index.ts --inputFile ./test/components.ts",
     "test": "vitest",
-    "typecheck": "tsc --noEmit",
-    "prepare": "simple-git-hooks"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "ts-node": "^10.9.2",

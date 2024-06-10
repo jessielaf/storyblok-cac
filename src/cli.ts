@@ -1,12 +1,12 @@
 #! /usr/bin/env node
 
+import path from "node:path"
 import yargs from "yargs/yargs"
 import { hideBin } from "yargs/helpers"
-import path from "path"
-import { createComponentFile } from "./generators.js"
 import { tsImport } from "tsx/esm/api"
+import { createComponentFile } from "./generators.js"
 
-const main = async () => {
+async function main() {
   const argv = await yargs(hideBin(process.argv))
     .option("inputFile", {
       description: "The TypeScript file where the components are located.",
@@ -28,11 +28,12 @@ const main = async () => {
   try {
     const components = await tsImport(
       path.resolve(process.cwd(), inputFile),
-      "/"
+      "/",
     )
 
     createComponentFile(components.default, argv.outputFile)
-  } catch (error: any) {
+  }
+  catch (error: any) {
     console.error("Error loading the TypeScript file:", error.message)
     console.error(error.stack)
     process.exit(1)
