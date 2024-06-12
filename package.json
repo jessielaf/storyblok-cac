@@ -1,7 +1,7 @@
 {
   "name": "@jlaf/storyblok-cac",
   "type": "module",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "StoryBlok Components as Code",
   "author": "Jessie Liauw A Fong <jessie@jcbdevelopment.com>",
   "license": "MIT",
