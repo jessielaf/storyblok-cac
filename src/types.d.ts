@@ -24,6 +24,7 @@ export interface StoryblokSchema {
     | StoryblokNumberField
     | StoryblokDataSourceField
     | StoryblokTab
+    | StoryblokBlokField
 }
 
 export interface StoryblokBaseField {
@@ -35,7 +36,12 @@ export interface StoryblokBaseField {
 }
 
 export interface StoryblokField extends StoryblokBaseField {
-  type: "text" | "bloks" | "textarea" | "richtext" | "boolean"
+  type: "text" | "textarea" | "richtext" | "boolean"
+}
+
+export interface StoryblokBlokField extends StoryblokBaseField {
+  type: "bloks"
+  component_whitelist?: string[]
 }
 
 export interface StoryblokNumberField extends StoryblokBaseField {
@@ -47,7 +53,6 @@ export interface StoryblokNumberField extends StoryblokBaseField {
 export interface StoryblokSectionField extends StoryblokBaseField {
   type: "section"
   keys: string[]
-  component_whitelist?: string[]
 }
 
 export interface StoryblokOptionField extends StoryblokBaseField {

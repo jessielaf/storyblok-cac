@@ -14,9 +14,16 @@ export function generateComponents(components: StoryblokComponent[]) {
           const pos = index + 1
 
           if (value.type === "tab") {
+            // Tabs have ids in them inserted. We force this by creating the tabId
             const { tabId, ...restValues } = value
             key = `${key}-${tabId}`
             return [key, { pos, ...restValues }]
+          }
+          else if (value.type === "bloks") {
+            // If a component whitelist is provided, we need to add the restrict_components property
+            if (value.component_whitelist && value.component_whitelist.length) {
+              ;(value as any).restrict_components = true
+            }
           }
 
           return [key, { ...value, pos }]
