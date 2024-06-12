@@ -20,6 +20,11 @@ export default [
         options: arrayToStoryBlokOptions(["left", "center", "right"]),
         default_value: "left",
       },
+      advanced: {
+        type: "tab",
+        keys: ["content"],
+        tabId: "test",
+      },
     },
   },
 ] as StoryblokComponent[]

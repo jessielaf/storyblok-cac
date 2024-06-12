@@ -11,3 +11,5 @@ node_modules
 temp
 .vscode
 .yarn
+
+components.json

@@ -10,13 +10,17 @@ export function generateComponents(components: StoryblokComponent[]) {
       is_nestable: component.is_nestable ?? true,
       all_presets: component.all_presets ?? [],
       schema: Object.fromEntries(
-        Object.entries(component.schema).map(([key, value], index) => [
-          key,
-          {
-            ...value,
-            pos: index + 1,
-          },
-        ]),
+        Object.entries(component.schema).map(([key, value], index) => {
+          const pos = index + 1
+
+          if (value.type === "tab") {
+            const { tabId, ...restValues } = value
+            key = `${key}-${tabId}`
+            return [key, { pos, ...restValues }]
+          }
+
+          return [key, { ...value, pos }]
+        }),
       ),
     })),
   }

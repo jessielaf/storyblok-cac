@@ -23,6 +23,7 @@ export interface StoryblokSchema {
     | StoryblokAssetField
     | StoryblokNumberField
     | StoryblokDataSourceField
+    | StoryblokTab
 }
 
 export interface StoryblokBaseField {
@@ -46,6 +47,7 @@ export interface StoryblokNumberField extends StoryblokBaseField {
 export interface StoryblokSectionField extends StoryblokBaseField {
   type: "section"
   keys: string[]
+  component_whitelist?: string[]
 }
 
 export interface StoryblokOptionField extends StoryblokBaseField {
@@ -67,4 +69,11 @@ export interface StoryblokAssetField extends StoryblokBaseField {
 export interface StoryblokOption {
   name: string
   value: string
+}
+
+export interface StoryblokTab {
+  tabId: string
+  display_name?: string
+  type: "tab"
+  keys: string[]
 }
