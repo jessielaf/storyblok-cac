@@ -14,32 +14,32 @@ First define your components:
 
 ```typescript
 // src/components.ts
-import { type StoryblokComponent, arrayToStoryBlokOptions } from "@jlaf/storyblok-cac"
+import { type StoryblokComponent, arrayToStoryBlokOptions } from '@jlaf/storyblok-cac'
 
 export default [
-  {
-    name: "page",
-    schema: {
-      body: {
-        type: "bloks",
-      },
-    },
-    is_root: true,
-    is_nestable: false,
-  },
-  {
-    name: "content",
-    schema: {
-      content: {
-        type: "richtext",
-      },
-      textAlign: {
-        type: "option",
-        options: arrayToStoryBlokOptions(["left", "center", "right"]),
-        default_value: "left",
-      },
-    }
-  },
+	{
+		name: 'page',
+		schema: {
+			body: {
+				type: 'bloks',
+			},
+		},
+		is_root: true,
+		is_nestable: false,
+	},
+	{
+		name: 'content',
+		schema: {
+			content: {
+				type: 'richtext',
+			},
+			textAlign: {
+				type: 'option',
+				options: arrayToStoryBlokOptions(['left', 'center', 'right']),
+				default_value: 'left',
+			},
+		}
+	},
 ] as StoryblokComponent[]
 ```
 
