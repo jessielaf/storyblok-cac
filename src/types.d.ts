@@ -1,9 +1,13 @@
+export interface StoryblokPreset {
+  name: string
+  preset: Record<string, any>
+}
+
 export interface StoryblokComponent {
   name: string
   schema: StoryblokSchema
   is_root?: boolean // defaults to false
   is_nestable?: boolean // defaults to true
-  all_presets?: any[] // defaults to []
   real_name?: string // defaults to name
   display_name?: string
   image?: string
@@ -13,6 +17,7 @@ export interface StoryblokComponent {
   component_group_uuid?: string
   color?: string
   icon?: string
+  presets?: StoryblokPreset[]
 }
 
 export interface StoryblokSchema {

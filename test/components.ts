@@ -1,7 +1,7 @@
 import {
   type StoryblokComponent,
   arrayToStoryBlokOptions,
-} from "@jlaf/storyblok-cac"
+} from "../src/index.js"
 
 export default [
   {
@@ -26,5 +26,13 @@ export default [
         tabId: "test",
       },
     },
+    presets: [
+      {
+        name: "colored",
+        preset: {
+          advanced: "test",
+        },
+      },
+    ],
   },
 ] as StoryblokComponent[]
