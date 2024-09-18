@@ -8,8 +8,9 @@ export function generateComponents(components: StoryblokComponent[]) {
 			real_name: component.name,
 			is_root: component.is_root ?? false,
 			is_nestable: component.is_nestable ?? true,
-			all_presets:
-        presets?.map(preset => ({ name: preset.name })) ?? [],
+			internal_tag_ids: [], // without this it wont work
+			internal_tags_list: [], // without this it wont work
+			all_presets: presets?.map(preset => ({ name: preset.name })) ?? [],
 			schema: Object.fromEntries(
 				Object.entries(component.schema).map(([key, value], index) => {
 					const pos = index + 1
@@ -19,8 +20,7 @@ export function generateComponents(components: StoryblokComponent[]) {
 						const { tabId, ...restValues } = value
 						key = `${key}-${tabId}`
 						return [key, { pos, ...restValues }]
-					}
-					else if (value.type === 'bloks') {
+					} else if (value.type === 'bloks') {
 						// If a component whitelist is provided, we need to add the restrict_components property
 						if (value.component_whitelist && value.component_whitelist.length) {
 							;(value as any).restrict_components = true
@@ -47,8 +47,8 @@ export async function generatePresets(
 	components: StoryblokComponent[],
 ) {
 	const apiComponents = await fetch(
-    `https://mapi.storyblok.com/v1/spaces/${spaceID}/components`,
-    { headers: {	Authorization: personalToken } },
+		`https://mapi.storyblok.com/v1/spaces/${spaceID}/components`,
+		{ headers: { Authorization: personalToken } },
 	)
 		.then(res => res.json())
 		.catch(console.error)
@@ -102,8 +102,7 @@ export async function createFile(object: any, outPath: string): Promise<void> {
 	try {
 		const jsonData = JSON.stringify(object, null, 2)
 		await fsPromises.writeFile(outPath, jsonData, 'utf8')
-	}
-	catch (error) {
+	} catch (error) {
 		console.error('An error occurred while writing the file:', error)
 	}
 }

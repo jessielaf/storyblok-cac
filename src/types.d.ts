@@ -61,12 +61,12 @@ export interface StoryblokSectionField extends StoryblokBaseField {
 }
 
 export interface StoryblokOptionField extends StoryblokBaseField {
-	type: 'option'
+	type: 'option' | 'options'
 	options: StoryblokOption[]
 }
 
 export interface StoryblokDataSourceField extends StoryblokBaseField {
-	type: 'option'
+	type: 'option' | 'options'
 	source: 'internal'
 	datasource_slug: string
 }
