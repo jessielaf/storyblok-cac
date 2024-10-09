@@ -72,7 +72,7 @@ export interface StoryblokDataSourceField extends StoryblokBaseField {
 }
 
 export interface StoryblokAssetField extends StoryblokBaseField {
-	type: 'asset'
+	type: 'asset' | 'multiasset'
 	filetypes: ('images' | 'videos' | 'audio' | 'files' | 'all')[] // Did not check all types yet
 }
 
