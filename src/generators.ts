@@ -1,9 +1,9 @@
 import { promises as fsPromises } from 'node:fs'
-import type { StoryblokComponent } from './types.js'
+import type { StoryblokConfig } from './types.js'
 
-export function generateComponents(components: StoryblokComponent[]) {
+export function generateComponents(config: StoryblokConfig) {
 	return {
-		components: components.map(({ presets, ...component }) => ({
+		components: config.components.map(({ presets, ...component }) => ({
 			...component,
 			real_name: component.name,
 			is_root: component.is_root ?? false,
@@ -31,20 +31,21 @@ export function generateComponents(components: StoryblokComponent[]) {
 				}),
 			),
 		})),
+		groups: config.groups,
 	}
 }
 
 export async function createComponentFile(
-	components: StoryblokComponent[],
+	config: StoryblokConfig,
 	outPath: string,
 ): Promise<void> {
-	return createFile(generateComponents(components), outPath)
+	return createFile(generateComponents(config), outPath)
 }
 
 export async function generatePresets(
 	spaceID: number,
 	personalToken: string,
-	components: StoryblokComponent[],
+	config: StoryblokConfig,
 ) {
 	const apiComponents = await fetch(
 		`https://mapi.storyblok.com/v1/spaces/${spaceID}/components`,
@@ -66,7 +67,7 @@ export async function generatePresets(
 		]),
 	)
 
-	return components
+	return config.components
 		.map((component) => {
 			const componentId = nameToId[component.name]
 
@@ -89,11 +90,11 @@ export async function generatePresets(
 export async function createPresetsFile(
 	spaceID: number,
 	personalToken: string,
-	components: StoryblokComponent[],
+	config: StoryblokConfig,
 	outPath: string,
 ): Promise<void> {
 	return createFile(
-		await generatePresets(spaceID, personalToken, components),
+		await generatePresets(spaceID, personalToken, config),
 		outPath,
 	)
 }

@@ -3,6 +3,15 @@ export interface StoryblokPreset {
 	preset: Record<string, any>
 }
 
+export interface StoryblokConfig {
+	components: StoryblokComponent[]
+	groups: StoryblokGroup[]
+}
+
+export interface StoryblokGroup {
+	name: string
+}
+
 export interface StoryblokComponent {
 	name: string
 	schema: StoryblokSchema
@@ -15,6 +24,7 @@ export interface StoryblokComponent {
 	preview_tmpl?: string
 	preset_id?: string
 	component_group_uuid?: string
+	component_group_name?: string
 	color?: string
 	icon?: string
 	presets?: StoryblokPreset[]
@@ -25,6 +35,7 @@ export interface StoryblokSchema {
 		| StoryblokField
 		| StoryblokSectionField
 		| StoryblokOptionField
+		| StoryblokSourceOptionField
 		| StoryblokAssetField
 		| StoryblokNumberField
 		| StoryblokDataSourceField
@@ -47,6 +58,8 @@ export interface StoryblokField extends StoryblokBaseField {
 export interface StoryblokBlokField extends StoryblokBaseField {
 	type: 'bloks'
 	component_whitelist?: string[]
+	maximum?: number
+	minimum?: number
 }
 
 export interface StoryblokNumberField extends StoryblokBaseField {
@@ -63,6 +76,13 @@ export interface StoryblokSectionField extends StoryblokBaseField {
 export interface StoryblokOptionField extends StoryblokBaseField {
 	type: 'option' | 'options'
 	options: StoryblokOption[]
+}
+
+export interface StoryblokSourceOptionField extends StoryblokBaseField {
+	type: 'option' | 'options'
+	source: 'external'
+	exclude_empty_options?: boolean
+	external_datasource: string
 }
 
 export interface StoryblokDataSourceField extends StoryblokBaseField {
